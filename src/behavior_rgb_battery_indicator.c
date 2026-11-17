@@ -57,6 +57,9 @@ static int battery_indicator_pressed(struct zmk_behavior_binding *binding,
 
     LOG_DBG("rgb battery indicator: %d%%, %d LEDs", level, count);
 
+    // Temporary (clears itself), so it may show while idle too.
+    zmk_led_overlay_set_show_when_idle(SLOT, true);
+
     // Fill up like a gauge: each LED starts fading in a little after the previous one.
     zmk_led_overlay_clear(SLOT);
     for (size_t i = 0; i < count; i++) {
