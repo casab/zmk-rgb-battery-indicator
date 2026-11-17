@@ -1,0 +1,8 @@
+# Battery level indicator for ZMK (see README.md).
+
+config ZMK_RGB_BATTERY_INDICATOR
+    bool
+    default y
+    depends on DT_HAS_ZMK_BEHAVIOR_RGB_BATTERY_INDICATOR_ENABLED
+    depends on ZMK_RGB_LED_OVERLAY
+    depends on ZMK_BATTERY_REPORTING

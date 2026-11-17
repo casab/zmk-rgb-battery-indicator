@@ -1,0 +1,53 @@
+# Copyright (c) 2026 Engin Al
+# SPDX-License-Identifier: MIT
+
+description: |
+  Key behavior that shows the battery level on LEDs for `duration-ms`, filling `leds` in order
+  like a gauge (all at 100%, half at 50%, at least one). Green from high-level up, orange from
+  low-level up, red below. Needs zmk-rgb-led-overlay.
+
+compatible: "zmk,behavior-rgb-battery-indicator"
+
+include: zero_param.yaml
+
+properties:
+  leds:
+    type: array
+    required: true
+    description: LED indexes in fill order (e.g. left to right).
+  brightness:
+    type: int
+    default: 50
+    description: Brightness 0-100.
+  high-level:
+    type: int
+    default: 50
+    description: Battery % from which high-hue is used.
+  low-level:
+    type: int
+    default: 25
+    description: Battery % from which mid-hue is used; below it low-hue.
+  high-hue:
+    type: int
+    default: 120
+    description: Hue (0-360) from high-level up; green.
+  mid-hue:
+    type: int
+    default: 30
+    description: Hue between low-level and high-level; orange.
+  low-hue:
+    type: int
+    default: 0
+    description: Hue below low-level; red.
+  duration-ms:
+    type: int
+    default: 3000
+    description: How long the level stays shown.
+  fill-ms:
+    type: int
+    default: 400
+    description: Time for a full gauge to fill up from the first LED to the last.
+  slot:
+    type: int
+    default: 2
+    description: zmk-rgb-led-overlay slot; higher slots are drawn over lower ones.
